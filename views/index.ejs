@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app="app.todos">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My node todos app</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.9.0/js/xeditable.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.9.0/css/xeditable.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/services/svTodos.js"></script>
+
+
+</head>
+<body ng-controller="todoController" style="position: relative;">
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>{{appName}}</h1>
+            <span class="label label-info">{{ todos.length }}</span>
+            <button ng-click="myStopFunction(todos)">Stop time</button>
+        </div>
+
+        <div id="todo-list" class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="checkbox" ng-repeat="todo in todos">
+                    <i ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible" class="fa fa-pencil" aria-hidden="true"></i>
+                    <i ng-click="deleteTodo(todo)" class="fa fa-trash" aria-hidden="true"></i>
+                    <input ng-change="updateTodo(todo)" type="checkbox" ng-model="todo.isDone">
+                    <span onaftersave="updateTodo(todo)"
+                          editable-text="todo.text"
+                          e-form="textBtnForm"
+                          ng-class="{strike: todo.isDone}">{{ todo.text }}</span>
+                </div>
+                <div ng-show="loading" class="row text-center">
+                    <div class="lds-hourglass" style="margin: auto"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form action="" ng-submit="createTodo($event)">
+                    <div class="form-group">
+                        <input type="text" ng-model="formData.text" class="form-control input-lg text-center">
+                    </div>
+
+                    <button class="btn btn-primary btn-lg" type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    margin-top: 30px;
+}
+
+/** Spiner **/
+.lds-hourglass {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+.lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 6px;
+    box-sizing: border-box;
+    border: 26px solid #28338a;
+    border-color: #28338a transparent #28338a transparent;
+    animation: lds-hourglass 1.2s infinite;
+}
+@keyframes lds-hourglass {
+    0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+        transform: rotate(1800deg);
+    }
+}
+
+/** Spiner **/
+
+#todo-list {
+    margin-bottom: 30px;
+}
+
+#todo-form {
+    margin-bottom: 50px;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.fullscreen-loader {
+    position: absolute;
+    top: 0;left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 1111111;
+}
+
+.fullscreen-loader .row {
+    display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    display: flex;
+    align-items: center;
+}
